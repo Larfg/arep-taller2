@@ -48,7 +48,7 @@ Clone el repositorio.
 
 ## Realizando pruebas:  
 
-Para probar el funcionamiento del servidor creamos cliente web como servicio dentro de nuestro servidor, al cual puede acceder una vez funcione el servidor, con (http://localhost:35000/search/). También los invitamos a buscar cualquier path en el navegador, así no tenga servicio definido. 
+Para probar el funcionamiento del servidor creamos cliente web como servicio dentro de nuestro servidor, al cual puede acceder una vez funcione el servidor, con (http://localhost:35000/search/) y dentro presione buscar para mostrar las carpetas y archivos del usuario que esté ejecutando el servidor. También los invitamos a buscar cualquier path en el navegador, así no tenga servicio definido. 
 
    
 
