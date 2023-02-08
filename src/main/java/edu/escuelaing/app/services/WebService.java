@@ -1,12 +1,20 @@
 package edu.escuelaing.app.services;
 
-public class WebPage implements Service{
+/**
+ * Servicio que nos devuelve una página de inicio
+ * @author Luis Felipe Giraldo Rodriguez
+ * @version 1.0
+ */
+public class WebService implements Service{
+
+    
     public String getHeader(){
         return "HTTP/1.1 200 OK\r\n"
         + "Access-Control-Allow-Origin: *\r\n"
         + "Content-Type:text/html \r\n"
         + "\r\n";
     }
+
     public String getBody(){
         return "<autor>Luis Felipe Giraldo</autor>"+
         "        "+
@@ -37,8 +45,8 @@ public class WebPage implements Service{
         "        </head>"+
         "        <body>"+
         "            <div class=\"header\">"+
-        "            <h3>PAGINA WEB</h3>"+
-        "            </div>"+
+        "            <h3>PAGINA PRINCIPAL</h3>"+
+        "            </div>"+ "<p>Paths disponibles: /search/</p>"+
         "        </body>"+
         "        </html>";
     }

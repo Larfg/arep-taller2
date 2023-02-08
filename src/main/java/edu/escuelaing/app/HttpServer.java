@@ -3,10 +3,10 @@ package edu.escuelaing.app;
 import java.net.*;
 import java.io.*;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
+import edu.escuelaing.app.services.FileReader;
+import edu.escuelaing.app.services.NotFoundService;
 import edu.escuelaing.app.services.Service;
-import edu.escuelaing.app.services.WebPage;
 
 /**
  * Servidor ws que nos permite enviar y recibir elementos por ws
@@ -28,11 +28,12 @@ public final class HttpServer {
     }
 
     /**
-     * Metodo principal que nos inicia un servidor socket http
+     * Metodo principal que nos inicia un servidor socket http, junto a unos servicios determinados
      * @param args
+     * @param services mapa de servicios que vamos a utilizar
      * @throws IOException
      */
-    public void run(String[] args) throws IOException {
+    public void run(String[] args, Map<String, Service> services) throws IOException {
         System.out.println("Servidor funcionando ...");
         ServerSocket serverSocket = null;
         try {
@@ -65,39 +66,14 @@ public final class HttpServer {
                     break;
                 }
             }
-            Service servicio = null;
-            switch (path) {
-                case "/web/": {
-                    servicio = new WebPage();
-                }
-                case "/":{
-                    servicio = new WebPage();
-                }
-            };
-            if (servicio!= null) {
-                outputLine = servicio.getHeader()
-                    + servicio.getBody();
+            Service servicio = new NotFoundService();
+            if (services.keySet().contains(path.replace("/", ""))){
+                servicio = services.get(path.replace("/", ""));
             }
-            
             else if (path.contains("/file/")){
-                FileReader fileReader = new FileReader(path);
-                outputLine = fileReader.getHeader()+ fileReader.getBody();
+                servicio = new FileReader(path);
             }
-            else {
-                outputLine = "HTTP/1.1 404 Not Found" + 
-                "\r\n"
-                + "Content-Type:text/html \r\n"
-                + "\r\n"
-                + "<html>"+
-                "<body>"+
-                ""+
-                "<h1>Pagina no encontrada!</h1>"+
-                ""+
-                "<img src=\"https://media.giphy.com/media/3o7aCTPPm4OHfRLSH6/giphy.gif\" alt=\"Computer man\">"+
-                ""+
-                "</body>"+
-                "</html>";                        
-            }
+            outputLine = servicio.getHeader() + servicio.getBody();
             out.println(outputLine);
             out.close();
             in.close();
