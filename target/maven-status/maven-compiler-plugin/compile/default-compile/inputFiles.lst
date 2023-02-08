@@ -1,2 +1,5 @@
-/home/luis/Documents/AREP/arep-taller1-wbserver/src/main/java/edu/escuelaing/app/HttpServer.java
-/home/luis/Documents/AREP/arep-taller1-wbserver/src/main/java/edu/escuelaing/app/NetClient.java
+/home/luis/Documents/AREP/arep-taller2/src/main/java/edu/escuelaing/app/App.java
+/home/luis/Documents/AREP/arep-taller2/src/main/java/edu/escuelaing/app/HttpServer.java
+/home/luis/Documents/AREP/arep-taller2/src/main/java/edu/escuelaing/app/services/WebPage.java
+/home/luis/Documents/AREP/arep-taller2/src/main/java/edu/escuelaing/app/FileReader.java
+/home/luis/Documents/AREP/arep-taller2/src/main/java/edu/escuelaing/app/services/Service.java
